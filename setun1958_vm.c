@@ -3172,7 +3172,7 @@ void view_short_regs(void)
 	view_short_reg(&ph1, "  ph1");
 	view_short_reg(&ph2, "  ph2");
 	/*
-	 printf("TODO Добавить вывод S,R float числа. \r\n");
+	 printf("TODO: bổ sung hiển thị số thực của S và R. \r\n");
 	 view_short_reg(&S, "  S  ");
 	 view_short_reg(&R, "  R  ");
 	*/
@@ -5079,7 +5079,7 @@ int8_t execute_trs_lut(trs_t addr, trs_t oper)
 		/* Недопустимая команда */
 		if (LOGGING > 0)
 		{
-			printf("k6..8[]: STOP! NO OPERATION\n");
+			printf("k6..8[]: DỪNG! KHÔNG CÓ PHÉP TOÁN\n");
 			view_short_reg(&k6_8, "k6..8=");
 		}
 		return STOP_ERROR;
@@ -5328,7 +5328,7 @@ static int8_t op_0plus0(trs_t addr, trs_t oper __attribute__((unused)))
 	trs_t k1_5 = slice_trs_setun(addr, 1, 5);
 	k1_5.l = 5;
 	if (LOGGING > 0)
-		printf("A*=>(C) при w=0\n");
+		printf("A* → C khi w = 0\n");
 	int8_t w = sgn_trs(W);
 	if (w == 0)
 	{
@@ -5349,7 +5349,7 @@ static int8_t op_0plusplus(trs_t addr, trs_t oper __attribute__((unused)))
 	trs_t k1_5 = slice_trs_setun(addr, 1, 5);
 	k1_5.l = 5;
 	if (LOGGING > 0)
-		printf("A*=>(C) при w=+1\n");
+		printf("A* → C khi w = +1\n");
 	int8_t w = sgn_trs(W);
 	if (w > 0)
 	{
@@ -5370,7 +5370,7 @@ static int8_t op_0plusminus(trs_t addr, trs_t oper __attribute__((unused)))
 	trs_t k1_5 = slice_trs_setun(addr, 1, 5);
 	k1_5.l = 5;
 	if (LOGGING > 0)
-		printf("A*=>(C) при w=-1\n");
+		printf("A* → C khi w = -1\n");
 	int8_t w = sgn_trs(W);
 	if (w < 0)
 	{
@@ -5513,7 +5513,7 @@ static int8_t op_minusplus0(trs_t addr, trs_t oper __attribute__((unused)))
 	trs_t k1_5 = slice_trs_setun(addr, 1, 5);
 	k1_5.l = 5;
 	if (LOGGING > 0)
-		printf("Сдвиг (S) на (A*)=>(S)\n");
+		printf("Dịch (S) theo (A*) → (S)\n");
 	/*
 	 * Операция сдвига производит сдвиг содержимого регистра S на N
 	 * разрядов, где N рассматривается как 5-разрядный код, хранящийся в
@@ -5552,7 +5552,7 @@ static int8_t op_minusplusminus(trs_t addr, trs_t oper __attribute__((unused)))
 	trs_t k1_5 = slice_trs_setun(addr, 1, 5);
 	k1_5.l = 5;
 	if (LOGGING > 0)
-		printf("Норм.(S)=>(A*); (N)=>(S)\n");
+		printf("Chuẩn hóa (S) → (A*); (N) → (S)\n");
 	/**
 	 * Операция нормализации производит сдвиг (S) при (S) != 0 в таком направлении и на такое число
 	 * разрядов |N|, чтобы результат, посылаемый в ячейку A*, был но модулю больше 1/2 , но меньше 3/2,
@@ -5622,7 +5622,7 @@ static int8_t op_minus00(trs_t addr, trs_t oper __attribute__((unused)))
 	trs_t fa;
 	if (LOGGING > 0)
 	{
-		printf("Ввод в Фа* - Вывод из Фа*\n");
+		printf("Nạp vào Фа* - xuất ra từ Фа*\n");
 		view_short_reg(&k1_5, "k1_5");
 	}
 	int8_t s = get_trit_setun(k1_5, 1);
@@ -5647,27 +5647,27 @@ static int8_t op_minus00(trs_t addr, trs_t oper __attribute__((unused)))
 	{
 	case (0 * 27 + 0 * 9 + 0 * 3 + 1):
 		if (LOGGING > 0)
-			printf(" k2..5[000+]: Ввод с ФТ-1 в виде команд\n");
+			printf(" k2..5[000+]: Nhập lệnh từ bộ đọc băng giấy FT-1\n");
 		Read_Commands_from_FT1(ptr1, fa);
 		break;
 	case (0 * 27 + 0 * 9 + 1 * 3 + 0):
 		if (LOGGING > 0)
-			printf(" k2..5[00+0]: Ввод с ФТ-2 в виде команд\n");
+			printf(" k2..5[00+0]: Nhập lệnh từ bộ đọc băng giấy FT-2\n");
 		Read_Commands_from_FT2(ptr2, fa);
 		break;
 	case (0 * 27 + 0 * 9 + 0 * 3 - 1):
 		if (LOGGING > 0)
-			printf(" k2..5[000-]: Ввод с ФТ-1 в виде символов\n");
+			printf(" k2..5[000-]: Nhập ký hiệu từ bộ đọc băng giấy FT-1\n");
 		Read_Symbols_from_FT1(ptr1, fa);
 		break;
 	case (0 * 27 + 0 * 9 - 1 * 3 + 0):
 		if (LOGGING > 0)
-			printf(" k2..5[00-0]: Ввод с ФТ-2 в виде символов\n");
+			printf(" k2..5[00-0]: Nhập ký hiệu từ bộ đọc băng giấy FT-2\n");
 		Read_Symbols_from_FT2(ptr2, fa);
 		break;
 	case (1 * 27 + 0 * 9 + 0 * 3 + 0):
 		if (LOGGING > 0)
-			printf(" k2..5[+000]: Перфорация троичных кодов на Перфоратор ПЛ\n");
+			printf(" k2..5[+000]: Đục mã tam phân lên thiết bị đục băng giấy PL\n");
 		for (uint8_t i = 0; i < SIZE_ZONE_TRIT_FRAM; i++)
 		{
 			MR = ld_fram(fa);
@@ -5688,7 +5688,7 @@ static int8_t op_minus00(trs_t addr, trs_t oper __attribute__((unused)))
 		break;
 	case (-1 * 27 + 0 * 9 + 0 * 3 + 0):
 		if (LOGGING > 0)
-			printf(" k2..5[-000]: Перфорация троичных символов на Перфоратор ПЛ\n");
+			printf(" k2..5[-000]: Đục ký hiệu tam phân lên thiết bị đục băng giấy PL\n");
 		for (uint8_t i = 0; i < SIZE_ZONE_TRIT_FRAM; i++)
 		{
 			MR = ld_fram(fa);
@@ -5707,7 +5707,7 @@ static int8_t op_minus00(trs_t addr, trs_t oper __attribute__((unused)))
 		break;
 	case (0 * 27 + 1 * 9 + 0 * 3 + 0):
 		if (LOGGING > 0)
-			printf(" k2..5[0+00]: Печать в виде команд на Пишущей машинке\n");
+			printf(" k2..5[0+00]: In lệnh bằng máy chữ\n");
 		{
 			uint8_t current = letter_number_sw;
 			letter_number_sw = 1;
@@ -5735,7 +5735,7 @@ static int8_t op_minus00(trs_t addr, trs_t oper __attribute__((unused)))
 		break;
 	case (0 * 27 - 1 * 9 + 0 * 3 + 0):
 		if (LOGGING > 0)
-			printf(" k2..5[0-00]: Печать одним цветом в виде символов\n");
+			printf(" k2..5[0-00]: In ký hiệu đơn sắc\n");
 		for (uint8_t i = 0; i < SIZE_ZONE_TRIT_FRAM; i++)
 		{
 			MR = ld_fram(fa);
@@ -5754,7 +5754,7 @@ static int8_t op_minus00(trs_t addr, trs_t oper __attribute__((unused)))
 		break;
 	case (1 * 27 - 1 * 9 + 0 * 3 + 0):
 		if (LOGGING > 0)
-			printf(" k2..5[+-00]: Печать в виде символов на Пишущей машинке\n");
+			printf(" k2..5[+-00]: In ký hiệu bằng máy chữ\n");
 		for (uint8_t i = 0; i < SIZE_ZONE_TRIT_FRAM; i++)
 		{
 			MR = ld_fram(fa);
@@ -5838,7 +5838,7 @@ static int8_t op_error(trs_t addr __attribute__((unused)), trs_t oper)
 	k6_8.l = 3;
 	if (LOGGING > 0)
 	{
-		printf("STOP BREAK\n");
+		printf("DỪNG DO ĐIỂM NGẮT\n");
 		view_short_reg(&k6_8, "k6..8=");
 	}
 	return STOP_ERROR;
@@ -6003,7 +6003,7 @@ void LoadFileListToPaperTxt(char *pathcataloglst, char *pathfilelst, char *pathf
 		}
 		else
 		{
-			fprintf(stderr, "Ошибка: путь каталога слишком длинный\n");
+			fprintf(stderr, "Lỗi: đường dẫn thư mục quá dài\n");
 			continue;
 		}
 
@@ -6015,7 +6015,7 @@ void LoadFileListToPaperTxt(char *pathcataloglst, char *pathfilelst, char *pathf
 		}
 		else
 		{
-			fprintf(stderr, "Ошибка: переполнение буфера path_str\n");
+			fprintf(stderr, "Lỗi: bộ đệm path_str bị tràn\n");
 			continue;
 		}
 
@@ -6916,7 +6916,7 @@ static void prn_cmd(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		printf("prn: ERR#1\r\n");
+		printf("prn: LỖI #1\r\n");
 		return;
 	}
 	int par2_numb = 0;
@@ -6937,7 +6937,7 @@ static void dump_cmd(int argc, char *argv[])
 {
 	if (argc > 2)
 	{
-		printf("dbg: ERR#1\r\n");
+		printf("dbg: LỖI #1\r\n");
 		return;
 	}
 	char *arg = (argc > 1) ? argv[1] : "";
@@ -6949,7 +6949,7 @@ static void load_cmd(int argc, char *argv[])
 {
 	if (argc > 3)
 	{
-		printf("ERROR load_cmd!\r\n");
+		printf("LỖI lệnh nạp chương trình!\r\n");
 		return;
 	}
 	char *a1 = (argc > 1) ? argv[1] : "";
@@ -6962,7 +6962,7 @@ static void debug_cmd(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		printf("dbg: ERR#1\r\n");
+		printf("dbg: LỖI #1\r\n");
 		return;
 	}
 	int par2_numb = 0;
@@ -6983,7 +6983,7 @@ static void begin_cmd(int argc, char __attribute__((unused)) * argv[])
 {
 	if (argc > 1)
 	{
-		printf("ERROR begin_cmd!\r\n");
+		printf("LỖI lệnh bắt đầu!\r\n");
 		return;
 	}
 	counter_step = 0;
@@ -6994,7 +6994,7 @@ static void pause_cmd(int argc, char __attribute__((unused)) * argv[])
 {
 	if (argc > 1)
 	{
-		printf("ERROR pause_cmd!\r\n");
+		printf("LỖI lệnh tạm dừng!\r\n");
 		return;
 	}
 	emu_stat = PAUSE_EMU_ST;
@@ -7004,7 +7004,7 @@ static void run_cmd(int argc, char __attribute__((unused)) * argv[])
 {
 	if (argc > 1)
 	{
-		printf("ERROR run_cmd!\r\n");
+		printf("LỖI lệnh tiếp tục chạy!\r\n");
 		return;
 	}
 	emu_stat = LOOP_WORK_EMU_ST;
@@ -7014,7 +7014,7 @@ static void step_cmd(int argc, char *argv[])
 {
 	if (argc > 2)
 	{
-		printf("ERROR step_cmd!\r\n");
+		printf("LỖI lệnh thực hiện từng bước!\r\n");
 		return;
 	}
 	if (argc == 2)
@@ -7028,7 +7028,7 @@ static void break_cmd(int argc, char *argv[])
 {
 	if (argc > 2)
 	{
-		printf("ERROR break_cmd!\r\n");
+		printf("LỖI lệnh đặt điểm dừng!\r\n");
 		return;
 	}
 	if (argc == 1)
@@ -7047,7 +7047,7 @@ static void break_drum_cmd(int argc, char *argv[])
 {
 	if (argc > 2)
 	{
-		printf("ERROR break_drum_cmd!\r\n");
+		printf("LỖI lệnh đặt điểm dừng trống từ!\r\n");
 		return;
 	}
 	if (argc == 1)
@@ -7066,7 +7066,7 @@ static void reg_cmd(int argc, char *argv[])
 {
 	if (argc < 2 || argc > 3)
 	{
-		printf("ERROR reg_cmd!\r\n");
+		printf("LỖI lệnh ghi thanh ghi!\r\n");
 		return;
 	}
 	int rg = toupper(argv[1][0]);
@@ -7103,7 +7103,7 @@ static void view_cmd(int argc, char __attribute__((unused)) * argv[])
 {
 	if (argc > 1)
 	{
-		printf("ERROR view_cmd!\r\n");
+		printf("LỖI lệnh xem trạng thái!\r\n");
 		return;
 	}
 	printf("[ Hiển thị các thanh ghi Setun-1958 ]\r\n");
@@ -7168,7 +7168,7 @@ static void fram_cmd(int argc, char *argv[])
 {
 	if (argc > 2)
 	{
-		printf("ERROR fram_cmd!\r\n");
+		printf("LỖI lệnh xem FRAM!\r\n");
 		return;
 	}
 	const char *arg = (argc > 1) ? argv[1] : "";
@@ -7184,7 +7184,7 @@ static void fram_cmd(int argc, char *argv[])
 		len = strlen(arg);
 		if (len < 1 || len > 1)
 		{
-			printf("ERROR fram_cmd!\r\n");
+			printf("LỖI lệnh xem FRAM!\r\n");
 			return;
 		}
 		memcpy(pr, lt2symtrs(*arg), 2);
@@ -7197,7 +7197,7 @@ static void drum_cmd(int argc, char *argv[])
 {
 	if (argc > 2)
 	{
-		printf("ERROR drum_cmd!\r\n");
+		printf("LỖI lệnh xem DRUM!\r\n");
 		return;
 	}
 	const char *arg = (argc > 1) ? argv[1] : "";
@@ -7212,7 +7212,7 @@ static void drum_cmd(int argc, char *argv[])
 		len = strlen(arg);
 		if (len < 1 || len > 2)
 		{
-			printf("ERROR drum_cmd!\r\n");
+			printf("LỖI lệnh xem DRUM!\r\n");
 			return;
 		}
 		switch (len)
@@ -7233,7 +7233,7 @@ static void help_cmd(int argc, char __attribute__((unused)) * argv[])
 {
 	if (argc > 1)
 	{
-		printf("ERROR help_cmd!\r\n");
+		printf("LỖI lệnh trợ giúp!\r\n");
 		return;
 	}
 	help_print();
@@ -7243,7 +7243,7 @@ static void quit_cmd(int argc, char __attribute__((unused)) * argv[])
 {
 	if (argc > 1)
 	{
-		printf("ERROR quit_cmd!\r\n");
+		printf("LỖI lệnh thoát!\r\n");
 		return;
 	}
 	Emu_Stop();
