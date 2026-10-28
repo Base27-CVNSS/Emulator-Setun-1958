@@ -1,12 +1,12 @@
 /**
  * Filename: "command.c"
  *
- * Command interpreter implementation (C port from C++ Command class)
+ * Triển khai bộ thông dịch lệnh (chuyển từ lớp Command của C++ sang C)
  */
 
 #include "command.h"
 #include <string.h>
-#include <strings.h>  /* strcasecmp */
+#include <strings.h>  /* Hàm so sánh chuỗi không phân biệt chữ hoa/chữ thường */
 
 void command_init(command_t *cmd, int max_args)
 {
