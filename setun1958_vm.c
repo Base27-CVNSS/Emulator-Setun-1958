@@ -1523,7 +1523,7 @@ div_result_t div_mod_trs(trs_t a, trs_t b)
     
     /* Проверка на деление на ноль */
     if ((b.t0 == 0 && b.t1 == 0) || b.l == 0) {
-        printf("ERROR: Division by zero!\n");
+        printf("LỖI: Không thể chia cho 0!\n");
         return result;
     }
     
@@ -2658,7 +2658,7 @@ void cmd_str_2_trs(char *syms, trs_t *r)
 		r->l = 9;
 		r->t1 = 0;
 		r->t0 = 0;
-		printf(" --- ERROR syms\r\n");
+		printf(" --- LỖI ký hiệu\r\n");
 		return;
 	}
 
@@ -3345,7 +3345,7 @@ void dump_fram_zone(trs_t z)
 	}
 
 	printf("\r\n");
-	printf("FRAM Zone = % 2i\r\n", sng);
+	printf("Vùng FRAM = % 2i\r\n", sng);
 	printf("\r\n");
 
 	for (uint8_t i = 0; i < 14; i++)
@@ -3510,7 +3510,7 @@ void dump_fram_zone(trs_t z)
 	}
 
 	printf("\r\n");
-	printf("FRAM Zone = % 2i\r\n", sng);
+	printf("Vùng FRAM = % 2i\r\n", sng);
 	printf("\r\n");
 }
 
@@ -3541,7 +3541,7 @@ void view_drum_zone(trs_t zone)
 	printf("], ");
 	trs2str(zr);
 	printf("\r\n");
-	printf("      index  (%i) \r\n", zind);
+	printf("      chỉ số  (%i) \r\n", zind);
 	printf("\r\n");
 
 	for (uint8_t i = 0; i < SIZE_ZONE_TRIT_DRUM; i++)
@@ -3573,7 +3573,7 @@ void view_drum_zone(trs_t zone)
 	printf("], ");
 	trs2str(zr);
 	printf("\r\n");
-	printf("      index  (%i) \r\n", zind);
+	printf("      chỉ số  (%i) \r\n", zind);
 	printf("\r\n");
 }
 
@@ -3938,7 +3938,7 @@ int16_t Decoder_String_from_Paper_Line(void)
 {
     FILE *filepl = fopen("software/paper.txt", "r");
     if (!filepl) {
-        printf("ERROR fopen %s\r\n", "software/paper.txt");
+        printf("LỖI mở tệp %s\r\n", "software/paper.txt");
         return 0;
     }
     
@@ -3953,14 +3953,14 @@ int16_t Decoder_String_from_Paper_Line(void)
         /* Проверка длины */
         size_t len = strlen(cmd);
         if (len != 6) {
-            printf("ERROR: invalid length %zu\r\n", len);
+            printf("LỖI: độ dài không hợp lệ %zu\r\n", len);
             fclose(filepl);
             return 0;
         }
         
         /* Проверка точки в позиции 3 */
         if (cmd[3] != '.') {
-            printf("ERROR: invalid format\r\n");
+            printf("LỖI: định dạng không hợp lệ\r\n");
             fclose(filepl);
             return 0;
         }
@@ -4195,7 +4195,7 @@ uint8_t Read_Commands_from_FT1(FILE *file, trs_t fa)
 {
 	if (LOGGING > 0)
 	{
-		printf("[ Read commands from FT1 ]\r\n");
+		printf("[ Đọc lệnh từ bộ đọc băng giấy FT1 ]\r\n");
 	}
 
 	uint8_t cnt = 0;
@@ -4328,7 +4328,7 @@ uint8_t Read_Symbols_from_FT1(FILE *file, trs_t fa)
 {
 	if (LOGGING > 0)
 	{
-		printf("[ Read symbols from FT1 ]\r\n");
+		printf("[ Đọc ký hiệu từ bộ đọc băng giấy FT1 ]\r\n");
 	}
 
 	uint8_t cnt = 0;
@@ -4463,7 +4463,7 @@ uint8_t Read_Symbols_from_FT1(FILE *file, trs_t fa)
  */
 uint8_t Read_Commands_from_FT2(FILE *file, trs_t fa)
 {
-	printf("[ Read commands from FT2 ]\r\n");
+	printf("[ Đọc lệnh từ bộ đọc băng giấy FT2 ]\r\n");
 	uint8_t cnt = 0;
 
 	if (file == NULL)
@@ -4555,7 +4555,7 @@ uint8_t Read_Symbols_from_FT2(FILE *file, trs_t fa)
 {
 	if (LOGGING > 0)
 	{
-		printf("[ Read symbols from FT2 ]\r\n");
+		printf("[ Đọc ký hiệu từ bộ đọc băng giấy FT2 ]\r\n");
 	}
 
 	uint8_t cnt = 0;
@@ -5899,14 +5899,14 @@ int copy_file(char *file_scr_sst, char *file_dst_sst)
  */
 void CopyFileScript(char *path_lst __attribute__((unused)), char *pathfile1, char *pathfile2)
 {
-	printf("Script file source: %s\r\n", pathfile1);
+	printf("Tệp kịch bản nguồn: %s\r\n", pathfile1);
 
-	printf("Script file destation: %s\r\n", pathfile2);
+	printf("Tệp kịch bản đích: %s\r\n", pathfile2);
 
 	if (copy_file(pathfile1, pathfile2) == 0)
-		printf("Copy file source to file destation.\r\n");
+		printf("Đã sao chép tệp nguồn sang tệp đích.\r\n");
 	else
-		fprintf(stderr, "ERROR Copy!\r\n");
+		fprintf(stderr, "LỖI sao chép tệp!\r\n");
 }
 
 /**
@@ -5926,7 +5926,7 @@ void LoadFileListToPaperTxt(char *pathcataloglst, char *pathfilelst, char *pathf
 	file_txt = fopen(pathfiletxt, "w");
 	if (file_txt == NULL)
 	{
-		printf("ERROR fopen %s\r\n", pathfiletxt);
+		printf("LỖI mở tệp %s\r\n", pathfiletxt);
 		return;
 	}
 
@@ -5934,12 +5934,12 @@ void LoadFileListToPaperTxt(char *pathcataloglst, char *pathfilelst, char *pathf
 	file_lst = fopen(pathfilelst, "r");
 	if (file_lst == NULL)
 	{
-		printf("ERROR fopen %s\r\n", pathfilelst);
+		printf("LỖI mở tệp %s\r\n", pathfilelst);
 		fclose(file_txt);
 		return;
 	}
 
-	printf("Read file list: %s\r\n", pathfilelst);
+	printf("Đọc danh sách tệp: %s\r\n", pathfilelst);
 	printf("\r\n");
 
 	while (1)
@@ -6023,7 +6023,7 @@ void LoadFileListToPaperTxt(char *pathcataloglst, char *pathfilelst, char *pathf
 		FILE *file = fopen(path_str, "r");
 		if (file == NULL)
 		{
-			printf("ERROR fopen %s\r\n", path_str);
+			printf("LỖI mở tệp %s\r\n", path_str);
 			continue; /* Не прерываем функцию */
 		}
 
@@ -6094,7 +6094,7 @@ void LoadFileListToPaperTxt(char *pathcataloglst, char *pathfilelst, char *pathf
 	fclose(file_lst);
 	fclose(file_txt);
 
-	printf("Write file: %s\r\n", pathfiletxt);
+	printf("Ghi tệp: %s\r\n", pathfiletxt);
 }
 
 /**
@@ -6107,7 +6107,7 @@ int ConvertSWtoPaper(char *path_lst, char *path_txt)
 
 	char a_fileName[1024];
 
-	printf("[ Convert software files to file paper.txt ]\r\n");
+	printf("[ Chuyển các tệp chương trình thành băng giấy ảo paper.txt ]\r\n");
 	printf("\r\n");
 
 	DIR *dir;
@@ -6132,7 +6132,7 @@ int ConvertSWtoPaper(char *path_lst, char *path_txt)
 	else
 	{
 		/* could not open directory */
-		perror("Could not open directory");
+		perror("Không thể mở thư mục");
 		res = 1; /* Error#1 */
 		return EXIT_FAILURE;
 	}
@@ -6200,11 +6200,11 @@ int DumpFileTxs(char *pathfiletxs)
 	file_txs = fopen(pathfiletxs, "r");
 	if (file_txs == NULL)
 	{
-		printf("ERROR fopen %s\r\n", pathfiletxs);
+		printf("LỖI mở tệp %s\r\n", pathfiletxs);
 		return 1;
 	}
 
-	printf("Read commands from file.txs: %s\r\n", pathfiletxs);
+	printf("Đọc lệnh từ tệp .txs: %s\r\n", pathfiletxs);
 
 	char cmd[20];
 	trs_t inr;
@@ -6331,7 +6331,7 @@ void view_next_start(void)
 	{ /*
 	  + Нет файла. Продолжить работу.
 	  */
-		printf("ERROR: fopen('./script/script.sst', 'r')\r\n");
+		printf("LỖI: không mở được tệp './script/script.sst' để đọc\r\n");
 		return;
 	}
 
@@ -6430,7 +6430,7 @@ void view_next_start(void)
 				if (sing == 0)
 				{
 					view_short_reg(&C_cond, "  Addres");
-					printf("  Note:   %s\r\n", fields[2]);
+					printf("  Ghi chú: %s\r\n", fields[2]);
 				}
 			}
 			break;
@@ -6467,7 +6467,7 @@ void view_next_start(void)
 	{
 		cond_symb = 'S';
 	}
-	printf("  Action: %c\r\n", cond_symb);
+	printf("  Hành động: %c\r\n", cond_symb);
 
 	/* Закрыть файл */
 	fclose(script_txt);
@@ -6478,10 +6478,10 @@ void view_next_start(void)
  */
 void print_version(void)
 {
-	printf(" Emulator ternary computer 'Setun-1958':\r\n");
-	printf(" Version: %s\r\n", Version);
-	printf(" Author:  Vladimir V.I.\r\n");
-	printf(" E-mail:  askfind@ya.ru\r\n");
+	printf(" Trình mô phỏng máy tính tam phân 'Setun-1958':\r\n");
+	printf(" Phiên bản: %s\r\n", Version);
+	printf(" Tác giả: Vladimir V.I.\r\n");
+	printf(" Email: askfind@ya.ru\r\n");
 	printf("\r\n");
 }
 
@@ -6491,8 +6491,8 @@ void print_version(void)
 int version(const char __attribute__((unused)) *argv0)
 {
 	printf(" Emulator ternary computer 'Setun-1958': ver.%s\r\n", Version);
-	printf(" Author: Vladimir V.I.\r\n");
-	printf(" E-mail: askfind@ya.ru\r\n");
+	printf(" Tác giả: Vladimir V.I.\r\n");
+	printf(" Email: askfind@ya.ru\r\n");
 	printf("\r\n");
 
 	fflush(stdout);
@@ -6505,14 +6505,14 @@ int version(const char __attribute__((unused)) *argv0)
  */
 int usage(const char *argv0)
 {
-	printf("usage: %s [options] FILE SCRIPT(s)...\r\n", argv0);
-	printf("\t--version : version software setun1958emu\r\n");
-	printf("\t--load : load software setun1958emu\r\n");
-	printf("\t--convert : convert software file.lst to paper.txt setun1958emu\r\n");
-	printf("\t--dump : dump zone from file.txs setun1958emu\r\n");
-	printf("\t--LOGGING : view step  setun1958emu\r\n");
-	printf("\t--breakpoint : view stop setun1958emu\r\n");
-	printf("\t--test : number test setun1958emu\r\n");
+	printf("Cách dùng: %s [tùy_chọn] TỆP KỊCH_BẢN...\r\n", argv0);
+	printf("\t--version : hiển thị phiên bản setun1958emu\r\n");
+	printf("\t--load : nạp chương trình cho setun1958emu\r\n");
+	printf("\t--convert : chuyển tệp chương trình .lst thành paper.txt\r\n");
+	printf("\t--dump : hiển thị vùng dữ liệu từ tệp .txs\r\n");
+	printf("\t--LOGGING : hiển thị từng bước thực thi\r\n");
+	printf("\t--breakpoint : hiển thị điểm dừng\r\n");
+	printf("\t--test : số lượng phép thử\r\n");
 	printf("\r\n");
 
 	fflush(stdout);
@@ -6609,7 +6609,7 @@ void Emu_Begin(void)
 	Emu_Open_Files();
 
 	/*  Выполнить первый код "Сетунь-1958" */
-	printf("\r\n[ Start Setun-1958 ]\r\n");
+	printf("\r\n[ Bắt đầu máy Setun-1958 ]\r\n");
 
 	/* Выполение программы в ферритовой памяти "Сетунь-1958" */
 	Begin_Read_Commands_from_FT1(ptr1);
@@ -6674,11 +6674,11 @@ void Emu_Stop(void)
 		/* Новое состояние */
 		emu_stat = PAUSE_EMU_ST;
 
-		printf("\r\n[ Stop Setun-1958 ]\r\n");
+		printf("\r\n[ Dừng máy Setun-1958 ]\r\n");
 	}
 	else
 	{
-		printf("\r\n[ Step = %d : Stop Setun-1958 ]\r\n", STEP);
+		printf("\r\n[ Bước = %d : Dừng máy Setun-1958 ]\r\n", STEP);
 	}
 
 	/* Закрыть файлы виртуальных устройств */
@@ -6892,7 +6892,7 @@ int Process_Work_Emulation(void)
  */
 static void help_print(void)
 {
-	printf(" Commands control for setun1958emu:\r\n");
+	printf(" Các lệnh điều khiển setun1958emu:\r\n");
 	printf(" dump     [arglist]\r\n");
 	printf(" load     [l]    [arglist]\r\n");
 	printf(" prn      [p]    [arglist]\r\n");
@@ -6924,12 +6924,12 @@ static void prn_cmd(int argc, char *argv[])
 	if (par2_numb > 0)
 	{
 		russian_latin_sw = 1; /* Печать LAT */
-		printf("switch print 'lat'\r\n");
+		printf("Đã chọn bộ ký tự in Latin\r\n");
 	}
 	else
 	{
 		russian_latin_sw = 0; /* Печать RUS */
-		printf("switch print 'rus'\r\n");
+		printf("Đã chọn bộ ký tự in tiếng Nga\r\n");
 	}
 }
 
@@ -6942,7 +6942,7 @@ static void dump_cmd(int argc, char *argv[])
 	}
 	char *arg = (argc > 1) ? argv[1] : "";
 	if (DumpFileTxs(arg) != 0)
-		printf("no path file\r\n");
+		printf("Không có đường dẫn tệp\r\n");
 }
 
 static void load_cmd(int argc, char *argv[])
@@ -6955,7 +6955,7 @@ static void load_cmd(int argc, char *argv[])
 	char *a1 = (argc > 1) ? argv[1] : "";
 	char *a2 = (argc > 2) ? argv[2] : "";
 	if (ConvertSWtoPaper(a1, a2) != 0)
-		printf("no path file\r\n");
+		printf("Không có đường dẫn tệp\r\n");
 }
 
 static void debug_cmd(int argc, char *argv[])
@@ -6970,12 +6970,12 @@ static void debug_cmd(int argc, char *argv[])
 	if (par2_numb > 0)
 	{
 		LOGGING = 1;
-		printf("switch debug on\r\n");
+		printf("Đã bật chế độ gỡ lỗi\r\n");
 	}
 	else
 	{
 		LOGGING = 0;
-		printf("switch debug off\r\n");
+		printf("Đã tắt chế độ gỡ lỗi\r\n");
 	}
 }
 
@@ -7106,62 +7106,62 @@ static void view_cmd(int argc, char __attribute__((unused)) * argv[])
 		printf("ERROR view_cmd!\r\n");
 		return;
 	}
-	printf("[ View registers Setun-1958 ]\r\n");
+	printf("[ Hiển thị các thanh ghi Setun-1958 ]\r\n");
 	view_short_regs();
 	printf("\r\n");
-	printf("[ Tools ]\r\n");
+	printf("[ Trạng thái hệ thống ]\r\n");
 
 	switch (emu_stat)
 	{
 	case NOREADY_EMU_ST:
-		printf("  status: noready\r\n");
+		printf("  trạng thái: chưa sẵn sàng\r\n");
 		break;
 	case BEGIN_EMU_ST:
-		printf("  status: begin\r\n");
+		printf("  trạng thái: sẵn sàng\r\n");
 		break;
 	case LOOP_WORK_EMU_ST:
-		printf("  status: loop\r\n");
+		printf("  trạng thái: đang chạy liên tục\r\n");
 		break;
 	case STEP_EMU_ST:
-		printf("  status: step\r\n");
+		printf("  trạng thái: chạy từng bước\r\n");
 		break;
 	case ERROR_EMU_ST:
-		printf("  status: error\r\n");
+		printf("  trạng thái: lỗi\r\n");
 		break;
 	case ERROR_MB_NUMBER_EMU_ST:
-		printf("  status: error drum\r\n");
+		printf("  trạng thái: lỗi bộ nhớ trống từ\r\n");
 		break;
 	case CLI_WELCOM_EMU_ST:
-		printf("  status: welcom\r\n");
+		printf("  trạng thái: màn hình chào\r\n");
 		break;
 	case WAIT_EMU_ST:
-		printf("  status: wait\r\n");
+		printf("  trạng thái: đang chờ\r\n");
 		break;
 	default:
 		break;
 	}
 
 	if (russian_latin_sw)
-		printf("  print: 'lat'\r\n");
+		printf("  bộ ký tự in: Latin\r\n");
 	else
-		printf("  print: 'rus'\r\n");
+		printf("  bộ ký tự in: Nga\r\n");
 
 	if (LOGGING)
-		printf("  debug: on\r\n");
+		printf("  gỡ lỗi: bật\r\n");
 	else
-		printf("  debug: off\r\n");
+		printf("  gỡ lỗi: tắt\r\n");
 
 	if (BREAKPOINT_TRS.l != 0)
 		view_short_reg(&BREAKPOINT_TRS, "  breakpoint");
 	else
-		printf("  breakpoint fram: no used\r\n");
+		printf("  điểm dừng FRAM: chưa đặt\r\n");
 
 	if (BREAKPOINT_MB_TRS.l != 0)
 		view_short_reg(&BREAKPOINT_MB_TRS, "  breakpoint drum");
 	else
-		printf("  breakpoint drum: no used\r\n");
+		printf("  điểm dừng DRUM: chưa đặt\r\n");
 
-	printf("  steps: %d\r\n", counter_step);
+	printf("  số bước: %d\r\n", counter_step);
 }
 
 static void fram_cmd(int argc, char *argv[])
@@ -7285,7 +7285,7 @@ static void calc_cmd(int argc, char *argv[])
 		result = num1 / num2;
 		break;
 	default:
-		printf("ERROR: Invalid operator\n");
+		printf("LỖI: toán tử không hợp lệ\n");
 		return;
 	}
 	printf("%.8lf %c %.8lf = %.8lf\n", num1, operator, num2, result);
@@ -7380,7 +7380,7 @@ int main(void)
 					command_save_history(&cmd, cli_buf);
 					if (!command_execute(&cmd, cli_buf))
 					{
-						printf("no command\r\n");
+						printf("Không có lệnh\r\n");
 					}
 				}
 				cli_pos = 0;
