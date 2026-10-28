@@ -1,37 +1,37 @@
-# Changelog
+# Nhật ký thay đổi
 
 ## 01.09.2026 ver.2.17
-- [Х] FIX ERROR - Печать double троичного регистра в функции view.
+- [Х] Sửa lỗi: hiển thị giá trị số thực của thanh ghi tam phân trong hàm view.
 
 ## 15.08.2026 ver.2.16
-- [Х] Оптимизация фцнкций.
-- [Х] Сборка и и тестирование setun1958emu.
-- [Х] Сборка и и тестирование unittest.
+- [Х] Tối ưu hóa các hàm.
+- [Х] Biên dịch và kiểm thử setun1958emu.
+- [Х] Biên dịch và kiểm thử bộ kiểm thử đơn vị.
 
 ## 14.08.2026 ver.2.16
-- [ ] ERROR При опции компилятору -O1 функция не формирует paper.txt файл
+- [ ] LỖI: khi dùng tùy chọn biên dịch -O1, hàm không tạo được tệp paper.txt
      void LoadFileListToPaperTxt(char *pathcataloglst, char *pathfilelst, char *pathfiletxt)
-- [Х] Переименование файлов проекта.
-- [Х] Исправить warning компилятора GCC. Изменение типов для функций.
+- [Х] Đổi tên các tệp của dự án.
+- [Х] Sửa cảnh báo của trình biên dịch GCC và điều chỉnh kiểu dữ liệu của các hàm.
 - [Х] Сборка и тестирование unittest
 
 ## 09.08.2026 ver.2.15
-- [Х] Тестирвоание tui интефейса и анализ интеграции.
+- [Х] Kiểm thử giao diện TUI và phân tích tích hợp.
 
 ## 08.08.2026 ver.2.14
-- [Х] inline для функций trit.
+- [Х] Dùng inline cho các hàm xử lý trit.
 
 ## 08.08.2026 ver.2.13
-- [Х] Для увеличения производительности использована новая функция
+- [Х] Sử dụng hàm mới để cải thiện hiệu năng.
       int8_t execute_trs_lut(trs_t addr, trs_t oper)
 
 ## 04.08.2026 ver.2.12
-- [Х] Оптимизация функция int32_t pow3(int8_t x).
-- [Х] Реализована функция trs_t d10_to_t3(float f).
-- [Х] Добавлен каталог unittest_setun1958 с тестированием виртуальной машины emusetun.
+- [Х] Tối ưu hóa hàm int32_t pow3(int8_t x).
+- [Х] Triển khai hàm trs_t d10_to_t3(float f).
+- [Х] Thêm thư mục unittest_setun1958 để kiểm thử máy ảo emusetun.
 
 ## 10.01.2026 ver.2.11
-- [Х] FIX ERROR Была изменена функция умножения
+- [Х] FIX ERROR Đã thay đổi hàm nhân.
       /* Троичное умножение тритов */
       trs_t mul_trs(trs_t a, trs_t b)
       { ... }
@@ -44,19 +44,19 @@
   begin
 
 ## 07.01.2026 ver.2.10
-- [Х] Добавлены исходные кода транслятора с языка программирования ALGOL-60
+- [Х] Thêm mã nguồn trình biên dịch từ ngôn ngữ ALGOL-60.
       "./software/algol60setun/".
 
 ## 04.01.2026 ver.2.10
-- [Х] Новая оптимизированная функция
+- [Х] Hàm mới đã được tối ưu hóa.
       void electrified_typewriter(trs_t t, uint8_t local).
 
 ## 27.10.2025 ver.2.09
-- [Х] Добавлена команда установки набора символов для печати. RUS-русский, LAT-латинский. 
+- [Х] Thêm lệnh chọn bộ ký tự in: RUS là tiếng Nga, LAT là chữ Latin. 
  
 ## 03.04.2025 ver.2.08
- - [ ] Добавлнение файл бинарного формата для хранения троичных данных.
- - [ ] Добавлнение загрузки бинарного формата виртуальной перфоленты для СЕТУНЬ.
+ - [ ] Bổ sung định dạng tệp nhị phân để lưu dữ liệu tam phân.
+ - [ ] Bổ sung khả năng nạp băng giấy ảo dạng nhị phân cho SETUN.
 
 //TODO viv+ add codes
 // -----------------------------------------------------
@@ -178,15 +178,15 @@ b7 b6 b5b4 b3b2 b1b0
 // -----------------------------------------------------
 
 ## 31.03.2025 ver.2.07.1
- - [Х] Добавлнение исходных файлов троичных библиотек для СЕТУНЬ.
+ - [Х] Bổ sung mã nguồn các thư viện tam phân cho SETUN.
 
 ## 29.03.2025 ver.2.07
  - [Х] Edit /* Троичное умножение тритов */
 trs_t mul_trs(trs_t a, trs_t b)
- - [Х] Добавлен пример из книги book3 на странице 87.
+ - [Х] Thêm ví dụ từ sách book3, trang 87.
 
 ## 26.03.2025 ver.2.06
- - [Х] . FIX Печать русского символа 'Л'
+ - [Х] . Sửa lỗi in ký tự tiếng Nga 'Л'.
 
  /**
  * Печать на электрифицированную пишущую машинку
@@ -196,22 +196,22 @@ void electrified_typewriter(trs_t t, uint8_t local)
 
 
 ## 25.03.2025 ver.2.04
- - [Х] Отладка библиотеки программ ИП-Т.
+ - [Х] Gỡ lỗi thư viện chương trình ИП-Т.
 
 ## 28.01.2025 ver.2.04
- - [Х] Опции компилятора -std=gnu11
+ - [Х] Tùy chọn trình biên dịch -std=gnu11.
 
 ## 26.01.2025 ver.2.03
- - [Х] Добавить программы библиотеки ИП-2 преобразования 10->3, 3->10 и печать цифровых массивов.
+ - [Х] Thêm các chương trình thư viện ИП-2 để chuyển đổi 10→3, 3→10 và in mảng số.
       - [Х] ./software/ip2_10_3
       - [Х] ./software/ip2_3_10
       - [Х] ./software/ip2_ppp
       - [Х] ./software/test_print_lat
       - [Х] ./software/test_print_rus
- - [Х] Отладка преобразования 10->3, 3->10.
+ - [Х] Gỡ lỗi chuyển đổi 10→3 và 3→10.
 
 ## 25.01.2025 ver.2.02
- - [Х] Изменён формат хранения магнитного барабана drum.bak.
+ - [Х] Thay đổi định dạng lưu trữ của trống từ drum.bak.
  - [Х] FIX ERR - Запись и чтение файла хранения магнитного барабана drum.bak.
  
 ## 24.01.2025 ver.2.01
