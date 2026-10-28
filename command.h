@@ -1,7 +1,7 @@
 /**
  * Filename: "command.h"
  *
- * Command interpreter for setun1958emu (C port from C++ Command class)
+ * Bộ thông dịch lệnh cho setun1958emu (chuyển từ lớp Command của C++ sang C)
  */
 
 #ifndef COMMAND_H
@@ -36,19 +36,19 @@ typedef struct {
     int max_args;
 } command_t;
 
-/* Init */
+/* Khởi tạo */
 void command_init(command_t *cmd, int max_args);
 
-/* Add command */
+/* Thêm lệnh */
 void command_add(command_t *cmd, const char *name, const char *alias, cmd_handler_t handler);
 
-/* Parse line into argc/argv (modifies line in place) */
+/* Phân tích dòng thành argc/argv (thay đổi trực tiếp nội dung dòng) */
 int command_parse_line(char *line, char *argv[], int max_args);
 
-/* Execute command line. Returns 1 if found and executed, 0 otherwise. */
+/* Thực thi dòng lệnh: trả về 1 nếu tìm thấy và thực thi, ngược lại trả về 0. */
 int command_execute(command_t *cmd, const char *line);
 
-/* History */
+/* Lịch sử lệnh */
 void command_save_history(command_t *cmd, const char *cmd_line);
 int command_recall_up(command_t *cmd, char *buf, size_t buf_size);
 int command_recall_down(command_t *cmd, char *buf, size_t buf_size);
